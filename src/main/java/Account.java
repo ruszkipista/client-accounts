@@ -8,10 +8,10 @@ public class Account {
         this.products = products;
     }
 
-    public int getQty(Product product) {
+    public int getQty(String productId) {
         int totalQuantity = 0;
         for (Product actualProduct : products) {
-            totalQuantity += actualProduct.getQuantity(product);
+            totalQuantity += actualProduct.getQuantity(productId);
         }
         return totalQuantity;
     }

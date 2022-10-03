@@ -18,7 +18,7 @@ public class Bank {
 
         Account acc1 = new Account(products);
 
-        System.out.println("IBM shares in account assets: "+acc1.getQty(new Share("s1", "", "", 0)));
-        System.out.println("Gov. Bond HUN in account assets: "+acc1.getQty(new Share("b1", "", "", 0)));
+        System.out.println("IBM shares in account assets: "+acc1.getQty("s1"));
+        System.out.println("Gov. Bond HUN in account assets: "+acc1.getQty("b1"));
     }
 }

@@ -19,8 +19,8 @@ public abstract class Product {
         return this.quantity;
     }
 
-    public int getQuantity(Product otherProduct){
-        return (this.id.equals(otherProduct.getId())) ? this.quantity : 0;
+    public int getQuantity(String productId){
+        return (this.id.equals(productId)) ? this.quantity : 0;
     }
     
 }

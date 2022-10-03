@@ -16,10 +16,10 @@ public class Derivative extends Product implements CanExpire {
     }
     
     @Override
-    public int getQuantity(Product product) {
+    public int getQuantity(String productId) {
         int sum = 0;
         for (Product actualProduct : products){
-            sum += super.getQuantity() * actualProduct.getQuantity(product);
+            sum += super.getQuantity() * actualProduct.getQuantity(productId);
         }
         return sum;
     }
