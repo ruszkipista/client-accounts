@@ -4,21 +4,23 @@ import java.util.List;
 
 public class Bank {
     public static void main(String[] args) {
-        Share share1 = new Share("s1",  "IBM",  "desc.", 500);
-        Bond bond1 = new Bond("b1", "Gov. Bond HUN",  "desc.", 3, LocalDate.of(2024, 12, 31));
+        QuantifiableProduct share1 = new QuantifiableProduct(new Share("s1",  "IBM",  "desc.") , 500);
+        QuantifiableProduct bond1 = new QuantifiableProduct(new Bond("b1", "Gov. Bond HUN",  "desc.", LocalDate.of(2024, 12, 31)), 3);
 
-        Derivative deriv1 = new Derivative("d1", "Ruby", "desc.", 2, LocalDate.of(2024, 12, 31));
-        deriv1.addProduct(new Share("s1",  "IBM",  "desc.", 10) );
-        deriv1.addProduct(new Bond("b1", "Gov. Bond HUN",  "desc.", 4, LocalDate.of(2024, 12, 31)));
+        List<QuantifiableProduct> products = new ArrayList<>();
+        products.add(new QuantifiableProduct(new Share("s1",  "IBM",  "desc."), 10));
+        products.add(new QuantifiableProduct(new Bond("b1", "Gov. Bond HUN",  "desc.", LocalDate.of(2024, 12, 31)),4));
 
-        List<Product> products = new ArrayList<>();
-        products.add(share1);
-        products.add(bond1);
-        products.add(deriv1);
+        QuantifiableProduct deriv1 = new QuantifiableDerivative(new Derivative("d1", "Ruby", "desc.", LocalDate.of(2024, 12, 31),products),2);
 
-        Account acc1 = new Account(products);
+        List<QuantifiableProduct> assets = new ArrayList<>();
+        assets.add(share1);
+        assets.add(bond1);
+        assets.add(deriv1);
 
-        System.out.println("IBM shares in account assets: "+acc1.getQty("s1"));
-        System.out.println("Gov. Bond HUN in account assets: "+acc1.getQty("b1"));
+        Account acc1 = new Account(assets);
+
+        System.out.println("IBM shares in account assets: "+acc1.getQuantity("s1"));
+        System.out.println("Gov. Bond HUN in account assets: "+acc1.getQuantity("b1"));
     }
 }

@@ -1,17 +1,16 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
-    List<Product> products = new ArrayList<>();
+    List<QuantifiableProduct> assets;
 
-    public Account(List<Product> products) {
-        this.products = products;
+    public Account(List<QuantifiableProduct> assets) {
+        this.assets = assets;
     }
 
-    public int getQty(String productId) {
+    public int getQuantity(String productId) {
         int totalQuantity = 0;
-        for (Product actualProduct : products) {
-            totalQuantity += actualProduct.getQuantity(productId);
+        for (QuantifiableProduct asset : assets) {
+            totalQuantity += asset.getQuantity(productId);
         }
         return totalQuantity;
     }

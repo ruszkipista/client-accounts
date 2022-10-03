@@ -1,25 +1,20 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Derivative extends Product implements CanExpire {
     private LocalDate expiryDate;
-    List<Product> products = new ArrayList<>();
+    List<QuantifiableProduct> products;
 
-    public Derivative(String id, String name, String description, int quantity, LocalDate expiryDate) {
-        super(id, name, description, quantity);
+    public Derivative(String id, String name, String description, LocalDate expiryDate, List<QuantifiableProduct> products) {
+        super(id, name, description);
         this.expiryDate = expiryDate;
+        this.products = products;
     }
 
-    public void addProduct(Product product){
-        products.add(product);
-    }
-    
-    @Override
     public int getQuantity(String productId) {
         int sum = 0;
-        for (Product actualProduct : products){
-            sum += super.getQuantity() * actualProduct.getQuantity(productId);
+        for (QuantifiableProduct quantifiableProduct : products) {
+            sum += quantifiableProduct.getQuantity(productId);
         }
         return sum;
     }
@@ -28,5 +23,5 @@ public class Derivative extends Product implements CanExpire {
     public LocalDate getExpiryDate() {
         return this.expiryDate;
     }
-    
+
 }
